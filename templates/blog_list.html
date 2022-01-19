@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>from blog list</h1>
+    <h2>to create post <a href="{% url 'blog:create'%}">ir</a></h2>
+
+    {% for p in posts %}
+        <p>{{p.id}} .- {{p.title}} 
+            <a href="{% url 'blog:detail' p.id %}">ir</a>
+            <a href="{% url 'blog:update' p.id %}">update</a>
+            <a href="{% url 'blog:delete' p.id %}">delete</a>
+        
+        </p>
+    {% endfor%}
+</body>
+</html>
