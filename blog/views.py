@@ -21,6 +21,7 @@ class BlogListView(View):
 
 
 class BlogCreateView(View):
+    #consulta al form y lo lleva al html
     def get(self, request, *args , **kwargs):
         form=PostCreateForm
         context = {
@@ -28,6 +29,7 @@ class BlogCreateView(View):
         }
         return render(request , 'blog_create.html' , context)
 
+     #recibe los datos, valida y guarda
     def post(self, request, *args , **kwargs):
         if request.method=='POST':
             form=PostCreateForm(request.POST)
