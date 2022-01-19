@@ -1,12 +1,21 @@
 from pathlib import Path
+import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG')
 
-SECRET_KEY = 'django-insecure-sp5=o6+-e-_mst*u5dj3yht!^7x%03kg07wup$!w#1!z)d4(ov'
 
-DEBUG = True
 
-ALLOWED_HOSTS = []
+
+
+
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -18,7 +27,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    
+    'core', 
+    'blog',
+    'tailwind',   
+    'themee'
 ]
+
+TAILWIND_APP_NAME = 'themee'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -35,7 +57,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR , 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -57,7 +79,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
